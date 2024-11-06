@@ -18,20 +18,22 @@ class EmployeesAddForm extends Component {
 
    //
 
-   // Обробник відправки форми
    handleSubmit = (e) => {
       e.preventDefault();
       const { name, salary } = this.state;
-      console.log('Введені дані:', { name, salary });
 
-      this.setState({
-         name: '',
-         salary: '',
-      });
+      if (name && salary) {
+         // Викликаємо функцію з пропсів, передаємо їй введені дані
+         this.props.onAdd(name, salary);
 
-      // Тут можна виконати будь-які інші дії, наприклад, викликати функцію додавання співробітника
+         // Очищуємо поля після відправки
+         this.setState({
+            name: '',
+            salary: '',
+         });
+      }
    };
-   //
+
    render() {
       const { name, salary } = this.state;
 
